@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Price Heatmap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.heat/dist/leaflet-heat.js"></script>
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+
+        .content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        a {
+            color: orange;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Rental Price Heatmap</h1>
+        <p>Average rental prices across Queens, NYC neighborhoods</p>
+        <a href="/">Back to Home</a>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        // Initialize the map centered on Queens, NYC
+        var map = L.map('map').setView([40.7, -73.8], 12);
+
+        // Add the OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Rental data passed from Flask
+        var rentalData = JSON.parse('{{ rental_data | tojson | safe }}');
+
+        // Create a heatmap layer
+        var heatData = rentalData.map(function(neighborhood) {
+            return [neighborhood.coords[0], neighborhood.coords[1], neighborhood.price];
+        });
+
+        var heatLayer = L.heatLayer(heatData, {
+            radius: 25,  // Radius of the heatmap points
+            blur: 15,    // Blur for smoother gradient
+            maxZoom: 17
+        }).addTo(map);
+
+        // Add markers with popups to display prices
+        rentalData.forEach(function(neighborhood) {
+            var marker = L.marker([neighborhood.coords[0], neighborhood.coords[1]]).addTo(map);
+            marker.bindPopup(
+                `<strong>${neighborhood.name}</strong><br>Average Rental Price: $${neighborhood.price}`
+            );
+        });
+    </script>
+</body>
+</html>

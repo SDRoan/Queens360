@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborhoods in Queens</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            background-image: url('/static/Nei2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .back-to-home {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: orange;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+
+        .back-to-home:hover {
+            background-color: #99460b;
+        }
+       
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 1px 1px 4px black;
+            color: orange;
+        }
+
+
+       
+
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            width: 80%;
+        }
+        .grid-item {
+            border: 4px solid orange;
+            text-align: center;
+            padding: 10px;
+            background-color: rgb(92, 90, 90);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .grid-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .grid-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        .grid-item a {
+            text-decoration: none;
+            color: orange;
+            font-size: 14px;
+            display: block;
+            font-weight: bold;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+        }
+        .slideshow-container img {
+            position: absolute;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: none;
+        }
+        .slideshow-container img.active {
+            display: block;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .arrow.left {
+            left: 5px;
+        }
+        .arrow.right {
+            right: 5px;
+        }
+    </style>
+    <script>
+        function initSlideshow(slideshowContainer) {
+            const slides = slideshowContainer.querySelectorAll("img");
+            const leftArrow = slideshowContainer.querySelector(".arrow.left");
+            const rightArrow = slideshowContainer.querySelector(".arrow.right");
+            let currentIndex = 0;
+
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("active", i === index);
+                });
+            }
+
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            }
+
+
+            showSlide(currentIndex);
+            leftArrow.addEventListener("click", prevSlide);
+            rightArrow.addEventListener("click", nextSlide);
+        }
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const slideshows = document.querySelectorAll(".slideshow-container");
+            slideshows.forEach(initSlideshow);
+        });
+    </script>
+</head>
+<body>
+    <a href="/" class="back-to-home">Back to Homepage</a>
+    <iframe
+        src="https://giphy.com/embed/L0rLDfIsBaqiCO0ZkQ"
+        style="width: 30%; height: auto; border: green;"
+        frameborder="4"
+        class="giphy-embed"
+        allowfullscreen>
+    </iframe>
+   
+    <h1>Neighborhoods in Queens</h1>
+   
+    <div class="grid-container">
+        <div class="grid-item">
+            <a href="/neighborhood/South Jamaica">
+                <img src="/static/South Jamaica.png" alt="South Jamaica Image">
+                South Jamaica
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Springfield Gardens North">
+                <img src="/static/Springfield Garden North.jpg" alt="Springfield Gardens North Image">
+                Springfield Gardens North
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Springfield Gardens South - Brookville">
+                <img src="/static/Brookville.jpg" alt="Springfield Gardens South - Brookville Image">
+                Springfield Gardens South - Brookville
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Rosedale">
+                <img src="/static/Rosedale.jpg" alt="Rosedale">
+                Rosedale
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Jamaica Estates - Holliswood">
+                <img src="/static/Holliswood.jpeg" alt="Jamaica Estates - Holliswood">
+                Jamaica Estates - Holliswood
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Hollis">
+                <img src="/static/Hollis.jpg" alt="Hollis">
+                Hollis
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/St. Albans">
+                <img src="/static/St Albans.jpg" alt="St. Albans">
+                St. Albans
+            </a>
+        </div>
+        <div class="grid-item">
+            <div class="slideshow-container">
+                <button class="arrow left">&lt;</button>
+                <img src="/static/Breezy Point.jpg" alt="Breezy Point Image 1" class="active">
+                <img src="/static/Belle.jpg" alt="Breezy Point Image 2">
+                <img src="/static/Rockway.jpg" alt="Breezy Point Image 3">
+                <img src="/static/Broad.jpg" alt="Breezy Point Image 4">
+                <button class="arrow right">&gt;</button>
+            </div>
+            <a href="/neighborhood/Breezy Point-Belle Harbor-Rockwy Prk-Broad Chnl">Breezy Point-Belle Harbor-Rockwy Prk-Broad Chnl</a>
+        </div>
+        <div class="grid-item">
+            <div class="slideshow-container">
+                <button class="arrow left">&lt;</button>
+                <img src="/static/hammels.jpg" alt="Hammels Image 1" class="active">
+                <img src="/static/Averne.jpg" alt="Hammels Image 2">
+                <img src="/static/Edgemere.jpg" alt="Hammels Image 3">
+                <button class="arrow right">&gt;</button>
+            </div>
+            <a href="/neighborhood/Hammels-Arverne-Edgemere">Hammels-Arverne-Edgemere</a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Far Rockaway-Bayswater">
+                <img src="/static/Bays.jpg" alt="Far Rockaway-Bayswater">
+                Far Rockaway-Bayswater
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Forest Hills">
+                <img src="/static/Forest.jpg" alt="Foest Hills">
+                Forest Hills
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Rego Park">
+                <img src="/static/Rego.jpg" alt="Rego Park">
+                Rego Park
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Glendale">
+                <img src="/static/Glendale.jpg" alt="Glendale">
+               Glendale
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Ridgewood">
+                <img src="/static/Ridge.jpg" alt="Ridgewood">
+                Ridgewood
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Middle Village">
+                <img src="/static/Middle.jpg" alt="Middle Village">
+                Middle Village
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Flushing">
+                <img src="/static/Flush.jpg" alt="Flushing">
+                Flushing
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/College Point">
+                <img src="/static/College.jpg" alt="College Point">
+                College Point
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Corona">
+                <img src="/static/Corona.jpg" alt="Corona">
+                Corona
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/North Corona">
+                <img src="/static/North Corona.jpg" alt="North Corona">
+                North Corona
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/East Elmhurst">
+                <img src="/static/East Elm.jpg" alt="East Elmhurst">
+                East Elmhurst
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Jackson Heights">
+                <img src="/static/Jackson.jpg" alt="Jackson Heights">
+                Jackson Heights
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Elmhurst">
+                <img src="/static/Elm.jpg" alt="Elmhurst">
+                Elmhurst
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Maspeth">
+                <img src="/static/Mas.jpg" alt="Maspeth">
+                Maspeth
+            </a>
+        </div>
+        <div class="grid-item">
+            <div class="slideshow-container">
+                <button class="arrow left">&lt;</button>
+                <img src="/static/Hunter.jpg" alt="Hammels Image 1" class="active">
+                <img src="/static/Sun.jpg" alt="Hammels Image 2">
+                <button class="arrow right">&gt;</button>
+            </div>
+            <a href="/neighborhood/Hunters Point-Sunnyside-West Maspeth">Hunters Point-Sunnyside-West Maspeth</a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Cambria Heights">
+                <img src="/static/Cam.jpg" alt="Cambria Heights">
+                Cambria Heights
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Queens Village">
+                <img src="/static/QV.jpg" alt="Queens Villaga">
+               Queens Village
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Briarwood-Jamaica Hills">
+                <img src="/static/Bri.jpg" alt="Briarwood-Jamaica Hillss">
+                Briarwood-Jamaica Hills
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Kew Gardens Hills">
+                <img src="/static/Kew.jpg" alt="Kew Gardens Hills">
+                Kew Gardens Hills
+            </a>
+        </div>
+        <div class="grid-item">
+            <div class="slideshow-container">
+                <button class="arrow left">&lt;</button>
+                <img src="/static/Pomo.jpg" alt="Hammels Image 1" class="active">
+                <img src="/static/FH.jpg" alt="Hammels Image 2">
+                <img src="/static/Hillcrest.jpg" alt="Hammels Image 2">
+                <button class="arrow right">&gt;</button>
+            </div>
+            <a href="/neighborhood/Pomonok-Flushing Heights-Hillcrest">Pomonok-Flushing Heights-Hillcrest</a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Fresh Meadows-Utopia">
+                <img src="/static/Fresh.jpg" alt="Fresh Meadows-Utopia">
+                Fresh Meadows-Utopia
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Oakland Gardens">
+                <img src="/static/Oak.jpg" alt="Oakland Gardens">
+                Oakland Gardens
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Bellerose">
+                <img src="/static/Bellr.jpg" alt="Bellerose">
+                Bellerose
+            </a>
+        </div>
+        <div class="grid-item">
+            <div class="slideshow-container">
+                <button class="arrow left">&lt;</button>
+                <img src="/static/Gleno.jpg" alt="Hammels Image 1" class="active">
+                <img src="/static/Flo.jpg" alt="Hammels Image 2">
+                <img src="/static/Newh.jpg" alt="Hammels Image 2">
+                <button class="arrow right">&gt;</button>
+            </div>
+            <a href="/neighborhood/Glen Oaks-Floral Park-New Hyde Park">Glen Oaks-Floral Park-New Hyde Park</a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Douglas Manor-Douglaston-Little Neck">
+                <img src="/static/Dog.jpg" alt="Douglas Manor-Douglaston-Little Neck">
+                Douglas Manor-Douglaston-Little Neck
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Bayside-Bayside Hills">
+                <img src="/static/Bayside.jpg" alt="Bayside-Bayside Hills">
+                Bayside-Bayside Hills
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Ft. Totten-Bay Terrace-Clearview">
+                <img src="/static/Totten.jpeg" alt="Ft. Totten-Bay Terrace-Clearview">
+                Ft. Totten-Bay Terrace-Clearview
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Auburndale">
+                <img src="/static/Au.jpg" alt="Auburndale">
+               Auburndale
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Whitestone">
+                <img src="/static/White.JPG" alt="Whitestone">
+                Whitestone
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Elmhurst-Maspeth">
+                <img src="/static/Elmast.jpg" alt="Elmhurst-Maspeth">
+                Elmhurst-Maspeth
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Murray Hill">
+                <img src="/static/Murr.jpg" alt="Murray Hill">
+                Murray Hill
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/East Flushing">
+                <img src="/static/East F.jpg" alt="East Flushing">
+                East Flushing
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Woodhaven">
+                <img src="/static/Wood.jpg" alt="Woodhaven">
+               Woodhaven
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Richmond Hill">
+                <img src="/static/Rich.jpg" alt="Richmond Hill">
+              Richmond Hill
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/South Ozone Park">
+                <img src="/static/SPo.jpg" alt="South Ozone Park">
+               South Ozone Park
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Ozone Park">
+                <img src="/static/Oz.jpg" alt="Ozone Park">
+               Ozone Park
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Lindenwood-Howard Beach">
+                <img src="/static/How.jpg" alt="Lindenwood-Howard Beach">
+               Lindenwood-Howard beach
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Jamaica">
+                <img src="/static/Jamaica.jpg" alt="Jamaica">
+               Jamaica
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Queensboro Hill">
+                <img src="/static/Qb.jpg" alt="Queensboro Hill">
+               Queensboro Hill
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Laurelton">
+                <img src="/static/Laurelton.jpg" alt="Laurelton">
+               Laurelton
+            </a>
+        </div>
+        <div class="grid-item">
+            <div class="slideshow-container">
+                <button class="arrow left">&lt;</button>
+                <img src="/static/Bridge.jpg" alt="Hammels Image 1" class="active">
+                <img src="/static/Long.jpg" alt="Hammels Image 2">
+                <button class="arrow right">&gt;</button>
+            </div>
+            <a href="/neighborhood/Queensbridge-Ravenswood-Long Island City">Queensbridge-Ravenswood-Long Island Cityrk</a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Astoria">
+                <img src="/static/Ast.jpg" alt="Astoria">
+               Astoria
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Steinway">
+                <img src="/static/Stein.JPG" alt="Steinway">
+               Steinway
+            </a>
+        </div>
+        <div class="grid-item">
+            <a href="/neighborhood/Baisley Park">
+                <img src="/static/Bais.jpg" alt="Baisley Park">
+               Baisley Park
+            </a>
+        </div>
+        {% for item in data %}
+        {% if item.nta_name not in ["South Jamaica", "Springfield Gardens North", "Springfield Gardens South - Brookville", "Hammels-Arverne-Edgemere"] %}
+       
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year-wise Crime Trends in Queens</title>
+    <script src="https://cdn.plot.ly/plotly-2.20.0.min.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center; color: maroon;">Year-wise Crime Trends in Queens</h1>
+    <div id="crimeGraph" style="width: 80%; margin: 0 auto;"></div>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/" style="text-decoration: none; color: blue;">Back to Home</a>
+    </div>
+    <script>
+        // Data for the graph
+        const years = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023];
+        const crimeCounts = [12000, 11800, 11500, 11000, 10800, 12000, 12500, 12200, 11700];
+
+        // Create the initial trace (empty at first)
+        const trace = {
+            x: [],
+            y: [],
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: 'Queens Crime Rate',
+            marker: { color: 'blue' },
+            line: { color: 'blue' }
+        };
+
+        // Define the layout
+        const layout = {
+            title: 'Year-wise Crime Trends in Queens',
+            xaxis: {
+                title: 'Year',
+                range: [2014.5, 2023.5],
+                tickvals: years, // Show all years as ticks
+                ticktext: years
+            },
+            yaxis: {
+                title: 'Number of Crimes',
+                range: [10000, 13000]
+            },
+            updatemenus: [
+                {
+                    type: 'buttons',
+                    showactive: false,
+                    buttons: [
+                        {
+                            label: 'Play',
+                            method: 'animate',
+                            args: [null, { frame: { duration: 500, redraw: true }, fromcurrent: true }]
+                        },
+                        {
+                            label: 'Pause',
+                            method: 'animate',
+                            args: [[null], { mode: 'immediate', frame: { duration: 0, redraw: false }, transition: { duration: 0 } }]
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // Frames for animation
+        const frames = years.map((year, index) => ({
+            name: year.toString(),
+            data: [
+                {
+                    x: years.slice(0, index + 1),
+                    y: crimeCounts.slice(0, index + 1)
+                }
+            ]
+        }));
+
+        // Render the plot with animation frames
+        Plotly.newPlot('crimeGraph', [trace], layout).then(() => {
+            Plotly.addFrames('crimeGraph', frames);
+        });
+    </script>
+</body>
+</html>

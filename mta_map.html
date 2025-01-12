@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTA Subway Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <h1 style="text-align: center;">MTA Subway Stations in Queens</h1>
+    <div id="map" style="width: 100%; height: 600px;"></div>
+
+    <script>
+        // Initialize the map centered on Queens
+        var map = L.map('map').setView([40.742, -73.844], 12);
+
+        // Add the OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Load the GeoJSON file for subway stations
+        fetch("/static/data/subway-stations.geojson")
+            .then(response => response.json())
+            .then(data => {
+                // Add GeoJSON data to the map
+                L.geoJSON(data, {
+                    onEachFeature: function (feature, layer) {
+                        // Parse the description to extract the name and lines
+                        const parser = new DOMParser();
+                        const descriptionHTML = parser.parseFromString(feature.properties.description, 'text/html');
+                        const name = descriptionHTML.querySelector('.atr-value').textContent || 'Unknown';
+                        const lines = descriptionHTML.querySelectorAll('.atr-value')[2].textContent || 'Unknown';
+
+                        // Add popup with station name and train lines
+                        layer.bindPopup(`
+                            <b>Station:</b> ${name}<br>
+                            <b>Lines:</b> ${lines}
+                        `);
+                    }
+                }).addTo(map);
+            })
+            .catch(error => console.error('Error loading GeoJSON:', error));
+    </script>
+</body>
+</html>

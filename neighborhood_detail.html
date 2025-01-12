@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ neighborhood.nta_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 300px;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        a {
+            color: orange;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        {% if neighborhood.nta_name == "South Jamaica" %}
+            <img src="/static/South Jamaica.png" alt="South Jamaica Image">
+        {% elif neighborhood.nta_name == "Springfield Gardens North" %}
+            <img src="/static/Springfield Garden North.jpg" alt="Springfield Gardens North Image">    
+            {% elif neighborhood.nta_name == "Rosedale" %}
+            <img src="/static/Rosedale.jpg" alt="Rosedale">
+           
+            {% elif neighborhood.nta_name == "Hollis" %}
+            <img src="/static/Hollis.jpg" alt="Hollis">
+           
+            {% elif neighborhood.nta_name == "St. Albans" %}
+            <img src="/static/St Albans.jpg" alt="St. Albans">
+
+            {% elif neighborhood.nta_name == "Breezy Point-Belle Harbor-Rockwy Prk-Broad Chnl" %}
+            <img src="/static/Breezy Point.jpg" alt="Breezy Point-Belle Harbor-Rockwy Prk-Broad Chnl">
+
+           
+            {% elif neighborhood.nta_name == "Hammels-Arverne-Edgemere" %}
+            <img src="/static/hammels.jpg" alt="Hammels-Arverne-Edgemere">
+           
+            {% elif neighborhood.nta_name == "Far Rockaway-Bayswater" %}
+            <img src="/static/Bays.jpg" alt="Far Rockaway-Bayswater">
+
+           
+            {% elif neighborhood.nta_name == "Forest Hills" %}
+            <img src="/static/Forest.jpg" alt="Foest Hills">
+            
+            {% elif neighborhood.nta_name == "Rego Park" %}
+            <img src="/static/Rego.jpg" alt="Rego Park">
+          
+            {% elif neighborhood.nta_name == "Glendale" %}
+            <img src="/static/Glendale.jpg" alt="Glendale">
+
+          
+            {% elif neighborhood.nta_name == "Ridgewood" %}
+            <img src="/static/Ridge.jpg" alt="Ridgewood">
+
+           
+            {% elif neighborhood.nta_name == "Middle Village" %}
+            <img src="/static/Middle.jpg" alt="Middle Village">
+
+          
+            {% elif neighborhood.nta_name == "Flushing" %}
+            <img src="/static/Flush.jpg" alt="Flushing">
+           
+            {% elif neighborhood.nta_name == "College Point" %}
+            <img src="/static/College.jpg" alt="College Point">
+
+          
+            {% elif neighborhood.nta_name == "Corona" %}
+            <img src="/static/Corona.jpg" alt="Corona">
+
+          
+            {% elif neighborhood.nta_name == "North Corona" %}
+            <img src="/static/North Corona.jpg" alt="North Corona">
+
+            
+            {% elif neighborhood.nta_name == "East Elmhurst" %}
+            <img src="/static/East Elm.jpg" alt="East Elmhurst">
+           
+            {% elif neighborhood.nta_name == "Jackson Heights" %}
+            <img src="/static/Jackson.jpg" alt="Jackson Heights">
+            
+            {% elif neighborhood.nta_name == "Elmhurst" %}
+            <img src="/static/Elm.jpg" alt="Elmhurst">
+
+           
+            {% elif neighborhood.nta_name == "Maspeth" %}
+            <img src="/static/Mas.jpg" alt="Maspeth">
+            
+            {% elif neighborhood.nta_name == "Hunters Point-Sunnyside-West Maspeth" %}
+            <img src="/static/Hunter.jpg" alt="Hunters Point-Sunnyside-West Maspeth">
+
+          
+            {% elif neighborhood.nta_name == "Cambria Heights" %}
+            <img src="/static/Cam.jpg" alt="Cambria Heights">
+           
+            {% elif neighborhood.nta_name == "Queens Village" %}
+            <img src="/static/QV.jpg" alt="Queens Village">
+
+         
+            {% elif neighborhood.nta_name == "Briarwood-Jamaica Hills" %}
+            <img src="/static/Bri.jpg" alt="Briarwood-Jamaica Hills">
+            
+            {% elif neighborhood.nta_name == "Kew Gardens Hills" %}
+            <img src="/static/Kew.jpg" alt="Kew Gardens Hills">
+            
+            {% elif neighborhood.nta_name == "Hollis" %}
+            <img src="/static/Hollis.jpg" alt="Hollis">
+            
+            {% elif neighborhood.nta_name == "Pomonok-Flushing Heights-Hillcrest" %}
+            <img src="/static/Pomo.jpg" alt="Pomonok-Flushing Heights-Hillcrest">
+
+            {% elif neighborhood.nta_name == "Fresh Meadows-Utopia" %}
+            <img src="/static/Fresh.jpg" alt="Fresh Meadows-Utopia">
+            
+            {% elif neighborhood.nta_name == "Oakland Gardens" %}
+            <img src="/static/Oak.jpg" alt="Oakland Gardens">
+           
+            {% elif neighborhood.nta_name == "Bellerose" %}
+            <img src="/static/Flo.jpg" alt="Hammels Image 2">
+
+            {% elif neighborhood.nta_name == "Glen Oaks-Floral Park-New Hyde Park" %}
+            <img src="/static/Gleno.jpg" alt="Glen Oaks-Floral Park-New Hyde Park">
+
+            {% elif neighborhood.nta_name == "Douglas Manor-Douglaston-Little Neck" %}
+            <img src="/static/Dog.jpg" alt="Douglas Manor-Douglaston-Little Neck">
+
+            
+            {% elif neighborhood.nta_name == "Bayside-Bayside Hills" %}
+            <img src="/static/Bayside.jpg" alt="Bayside-Bayside Hills">
+
+            
+            {% elif neighborhood.nta_name == "Ft. Totten-Bay Terrace-Clearview" %}
+            <img src="/static/Totten.jpeg" alt="Ft. Totten-Bay Terrace-Clearview">
+
+            {% elif neighborhood.nta_name == "Auburndale" %}
+            <img src="/static/Au.jpg" alt="Auburndale">
+
+           {% elif neighborhood.nta_name == "Whitestone" %}
+           <img src="/static/White.JPG" alt="Whitestone">
+
+            
+            {% elif neighborhood.nta_name == "Elmhurst-Maspeth" %}
+            <img src="/static/Elmast.jpg" alt="Elmhurst-Maspeth">
+            
+            {% elif neighborhood.nta_name == "Murray Hill" %}
+            <img src="/static/Murr.jpg" alt="Murray Hill">
+            
+            {% elif neighborhood.nta_name == "East Flushing" %}
+            <img src="/static/East F.jpg" alt="East Flushing">
+           
+            {% elif neighborhood.nta_name == "Woodhaven" %}
+            <img src="/static/Wood.jpg" alt="Woodhaven">
+
+           
+            {% elif neighborhood.nta_name == "Richmond Hill" %}
+            <img src="/static/Rich.jpg" alt="Richmond Hill">
+
+            
+            {% elif neighborhood.nta_name == "South Ozone Park" %}
+            <img src="/static/SPo.jpg" alt="South Ozone Park">
+       
+            {% elif neighborhood.nta_name == "Ozone Park" %}
+            <img src="/static/Oz.jpg" alt="Ozone Park">
+
+            {% elif neighborhood.nta_name == "Lindenwood-Howard Beach" %}
+            <img src="/static/How.jpg" alt="Lindenwood-Howard Beach">
+
+            {% elif neighborhood.nta_name == "Jamaica" %}
+            <img src="/static/Jamaica.jpg" alt="Jamaica">
+           
+            {% elif neighborhood.nta_name == "Queensboro Hill" %}
+            <img src="/static/Qb.jpg" alt="Queensboro Hill">
+
+            {% elif neighborhood.nta_name == "Laurelton" %}
+            <img src="/static/Laurelton.jpg" alt="Laurelton">
+
+            {% elif neighborhood.nta_name == "Queensbridge-Ravenswood-Long Island City" %}
+            <img src="/static/Bridge.jpg" alt="Queensbridge-Ravenswood-Long Island City">
+            
+            {% elif neighborhood.nta_name == "Astoria" %}
+            <img src="/static/Ast.jpg" alt="Astoria">
+
+            {% elif neighborhood.nta_name == "Steinway" %}
+            <img src="/static/Stein.JPG" alt="Steinway">
+
+            {% elif neighborhood.nta_name == "Baisley Park" %}
+            <img src="/static/Bais.jpg" alt="Baisley Park">
+
+            {% endif %}
+       
+        
+    <div class="hero-text">{{ neighborhood.nta_name }} - Queens</div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <a href="/neighborhoods">Back to Neighborhoods</a>
+        <h1>{{ neighborhood.nta_name }}</h1>
+        <p><strong>Neighborhood:</strong> {{ neighborhood.nta_name }}</p>
+        <p><strong>Borough:</strong> {{ neighborhood.borough }}</p>
+        <p><strong>Population:</strong> {{ neighborhood.population }}</p>
+    </div>
+</body>
+</html>
